@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CitationBlock from "../components/CitationBlock";
+import { Code2, Sheet, FileText, Plug, Search, Users, LayoutList } from "lucide-react";
 
 const googleSheetUrl =
   "https://docs.google.com/spreadsheets/d/1ZaMCJHQGvDqeY8k_WOPg6n0HlQJffiQFOMvKGRJnzLI/edit?usp=sharing";
@@ -41,6 +42,64 @@ export default function AboutPage() {
           </div>
         </header>
 
+
+        {/* ── Access ── */}
+        <section className="border-b border-[#dcfce7] py-10">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-[#16a34a]">
+            Access
+          </h2>
+          <ul className="mt-5 divide-y divide-[#e2e8f0]">
+            {[
+              {
+                label: "Source code",
+                note: "Source code and workspace for the app rebuild.",
+                href: "https://github.com/hongtaoh/ica_conf_pubs",
+                Icon: Code2,
+              },
+              {
+                label: "Download data",
+                note: "Full dataset as a public Google Sheet.",
+                href: googleSheetUrl,
+                Icon: Sheet,
+              },
+              {
+                label: "Paper PDF",
+                note: "Data demo paper describing the dataset and API endpoints.",
+                href: "/paper.pdf",
+                Icon: FileText,
+              },
+              {
+                label: "API Docs",
+                note: "REST endpoints for papers, authors, sessions, and semantic search.",
+                href: "/api-docs",
+                Icon: Plug,
+              },
+            ].map(({ label, note, href, Icon }) => (
+              <li key={label}>
+                <Link
+                  href={href}
+                  className="group flex items-center justify-between gap-6 py-4 transition hover:text-[#166534]"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#f0fdf4] text-[#16a34a] transition group-hover:bg-[#dcfce7] group-hover:text-[#166534]">
+                      <Icon size={18} strokeWidth={2} />
+                    </span>
+                    <div>
+                      <p className="font-medium text-[#0f172a] transition group-hover:text-[#166534]">
+                        {label}
+                      </p>
+                      <p className="mt-0.5 text-sm text-[#64748b]">{note}</p>
+                    </div>
+                  </div>
+                  <span className="shrink-0 font-mono text-xs text-[#cbd5e1] transition group-hover:text-[#16a34a]">
+                    ↗
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         {/* ── Why it matters ── */}
         <section className="border-b border-[#dcfce7] py-10">
           <h2 className="text-xs font-semibold uppercase tracking-widest text-[#16a34a]">
@@ -62,6 +121,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+
         {/* ── How to use ── */}
         <section className="border-b border-[#dcfce7] py-10">
           <h2 className="text-xs font-semibold uppercase tracking-widest text-[#16a34a]">
@@ -74,30 +134,37 @@ export default function AboutPage() {
                 title: "Semantic search",
                 body: "Paste a keyword, sentence, abstract, or full paragraph on the homepage. The query is embedded and matched against paper titles and abstracts using vector similarity.",
                 href: "/",
+                Icon: Search,
               },
               {
                 n: "02",
                 title: "Browse papers",
                 body: "Filter all 27,466 paper records by title, abstract, author name, or year. Results update as you type.",
                 href: "/papers",
+                Icon: FileText,
               },
               {
                 n: "03",
                 title: "Browse authors",
                 body: "Find any of the 21,038 authors by name or affiliation, and see every paper they contributed across conference years.",
                 href: "/authors",
+                Icon: Users,
               },
               {
                 n: "04",
                 title: "Browse sessions",
                 body: "Explore 4,935 conference sessions by title, chair, or division. Each session links to its constituent papers.",
                 href: "/sessions",
+                Icon: LayoutList,
               },
-            ].map(({ n, title, body, href }) => (
+            ].map(({ n, title, body, href, Icon }) => (
               <li key={n} className="group py-5">
                 <Link href={href} className="flex items-start gap-5">
-                  <span className="mt-0.5 w-8 shrink-0 font-mono text-xs text-[#cbd5e1]">
+                  {/* <span className="mt-0.5 w-8 shrink-0 font-mono text-xs text-[#cbd5e1]">
                     {n}
+                  </span> */}
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#f0fdf4] text-[#16a34a] transition group-hover:bg-[#dcfce7] group-hover:text-[#166534]">
+                    <Icon size={18} strokeWidth={2} />
                   </span>
                   <div>
                     <p className="font-semibold text-[#0f172a] transition group-hover:text-[#166534]">
@@ -111,53 +178,7 @@ export default function AboutPage() {
           </ol>
         </section>
 
-        {/* ── Access ── */}
-        <section className="border-b border-[#dcfce7] py-10">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-[#16a34a]">
-            Access
-          </h2>
-          <ul className="mt-5 divide-y divide-[#e2e8f0]">
-            {[
-              {
-                label: "Project GitHub",
-                note: "Source code and workspace for the app rebuild.",
-                href: "https://github.com/hongtaoh/ica-conf-app-new",
-              },
-              {
-                label: "Download data",
-                note: "Full dataset as a public Google Sheet.",
-                href: googleSheetUrl,
-              },
-              {
-                label: "Paper PDF",
-                note: "Data demo paper describing the dataset and API endpoints.",
-                href: "/paper.pdf",
-              },
-              {
-                label: "API Docs",
-                note: "REST endpoints for papers, authors, sessions, and semantic search.",
-                href: "/api-docs",
-              },
-            ].map(({ label, note, href }) => (
-              <li key={label}>
-                <Link
-                  href={href}
-                  className="group flex items-center justify-between gap-6 py-4 transition hover:text-[#166534]"
-                >
-                  <div>
-                    <p className="font-medium text-[#0f172a] transition group-hover:text-[#166534]">
-                      {label}
-                    </p>
-                    <p className="mt-0.5 text-sm text-[#64748b]">{note}</p>
-                  </div>
-                  <span className="shrink-0 font-mono text-xs text-[#cbd5e1] transition group-hover:text-[#16a34a]">
-                    ↗
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+        
 
         {/* ── Citation ── */}
         <section className="border-b border-[#dcfce7] py-10">
