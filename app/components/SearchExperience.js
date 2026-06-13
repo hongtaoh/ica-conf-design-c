@@ -220,7 +220,7 @@ export default function SearchExperience() {
               ["Browse sessions", "/sessions"],
               ["About", "/about"],
               ["API docs", "/api-docs"],
-              ["GitHub", "https://github.com/hongtaoh/ica-conf-app-new"],
+              ["GitHub", "https://github.com/hongtaoh/ica-conf-pubs"],
               [
                 "Download data",
                 "https://docs.google.com/spreadsheets/d/1ZaMCJHQGvDqeY8k_WOPg6n0HlQJffiQFOMvKGRJnzLI/edit?usp=sharing",
